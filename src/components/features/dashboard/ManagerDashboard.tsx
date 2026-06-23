@@ -49,7 +49,7 @@ export default function ManagerDashboard() {
     <div className="space-y-6">
       {/* Header */}
       <div className="bg-gradient-to-r from-[#244855] to-[#874F41] rounded-3xl p-6 text-white">
-        <h1 className="text-2xl md:text-3xl font-bold font-display">Manager Dashboard 📊</h1>
+        <h1 className="text-2xl md:text-3xl font-bold font-display">Manager Dashboard </h1>
         <p className="text-[#FBE9D0]/80 mt-1">{user?.region} Region · {MOCK_TEAM.filter(m => m.role === 'agent').length} Agents</p>
       </div>
 

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { Calendar, Clock, ArrowLeft, Tag, Share2, Twitter, Linkedin, Facebook } from 'lucide-react';
+import { Calendar, Clock, ArrowLeft, Tag, Share2, Twitter, Linkedin, Facebook, Newspaper } from 'lucide-react';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { MOCK_BLOGS } from '@/lib/mockData';
 import { formatDate } from '@/lib/utils';
@@ -19,7 +19,7 @@ export default function BlogDetailPage() {
     return (
       <div className="min-h-screen flex items-center justify-center pt-16">
         <div className="text-center">
-          <p className="text-6xl mb-4">📰</p>
+          <Newspaper className="w-16 h-16 text-[#90AEAD] mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-[#244855] mb-3">Post not found</h2>
           <Link to="/blog" className="btn-primary inline-flex items-center gap-2"><ArrowLeft className="w-4 h-4" /> Back to Blog</Link>
         </div>

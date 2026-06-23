@@ -95,7 +95,7 @@ export default function PricingSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14 reveal">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#244855]/10 border border-[#244855]/20 text-[#244855] dark:text-[#90AEAD] text-sm font-semibold mb-4">
-            💰 Transparent Pricing
+            Transparent Pricing
           </div>
           <h2 className="text-4xl md:text-5xl font-bold font-display text-[#244855] dark:text-white mb-4">
             Simple Plans, <span className="text-[#E64833]">No Hidden Fees</span>

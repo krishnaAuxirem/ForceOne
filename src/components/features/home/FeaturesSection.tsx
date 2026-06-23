@@ -34,7 +34,7 @@ export default function FeaturesSection() {
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 reveal">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E64833]/10 border border-[#E64833]/20 text-[#E64833] text-sm font-semibold mb-4">
-            ✨ Full-Featured Platform
+             Full-Featured Platform
           </div>
           <h2 className="text-4xl md:text-5xl font-bold font-display text-[#244855] dark:text-white mb-4">
             Everything You Need to <span className="text-[#E64833]">Manage Your Field Force</span>

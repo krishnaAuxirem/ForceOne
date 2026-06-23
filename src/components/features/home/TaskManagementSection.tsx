@@ -67,7 +67,7 @@ export default function TaskManagementSection() {
                             {task.title}
                           </p>
                           <div className="flex flex-wrap items-center gap-2 mt-1.5">
-                            <span className="text-xs text-[#90AEAD]">👤 {task.agent}</span>
+                            <span className="text-xs text-[#90AEAD]">{task.agent}</span>
                             <span className={`text-xs px-2 py-0.5 rounded-full border font-medium ${getPriorityColor(task.priority)}`}>
                               {task.priority}
                             </span>

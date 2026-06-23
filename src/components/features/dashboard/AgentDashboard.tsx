@@ -37,7 +37,7 @@ export default function AgentDashboard() {
       location: 'Current GPS Location (Mock)',
     };
     setAttendance(prev => [record, ...prev]);
-    toast.success('✅ Checked in successfully!');
+    toast.success('Checked in successfully!');
   };
 
   const handleCheckOut = () => {
@@ -47,7 +47,7 @@ export default function AgentDashboard() {
         ? { ...a, checkOut: new Date().toTimeString().slice(0, 5) }
         : a
     ));
-    toast.success('👋 Checked out successfully!');
+    toast.success('Checked out successfully!');
   };
 
   const updateTaskStatus = (taskId: string, status: Task['status']) => {
@@ -83,7 +83,7 @@ export default function AgentDashboard() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <p className="text-[#90AEAD] text-sm mb-1">Good {new Date().getHours() < 12 ? 'Morning' : 'Afternoon'},</p>
-            <h1 className="text-2xl md:text-3xl font-bold font-display">{user?.name} 👋</h1>
+            <h1 className="text-2xl md:text-3xl font-bold font-display">{user?.name}</h1>
             <p className="text-[#90AEAD] text-sm mt-1">{user?.region} · Field Agent</p>
           </div>
           <div className="flex gap-3">

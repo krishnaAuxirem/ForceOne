@@ -7,7 +7,7 @@ import { toast } from 'sonner';
 
 const NAV_LINKS = [
   { to: '/', label: 'Home' },
-  { to: '/#features', label: 'Features' },
+  { to: '/features', label: 'Features' },
   { to: '/about', label: 'About' },
   { to: '/blog', label: 'Blog' },
   { to: '/contact', label: 'Contact' },
@@ -92,11 +92,9 @@ export default function Navbar() {
                   onClick={() => setUserMenuOpen(o => !o)}
                   className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 transition-all min-h-[44px]"
                 >
-                  <img
-                    src={user.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=244855&color=FBE9D0`}
-                    alt={user.name}
-                    className="w-7 h-7 rounded-full object-cover border-2 border-[#E64833]"
-                  />
+                  <div className="w-7 h-7 rounded-full bg-[#E64833] text-white font-bold text-[10px] flex items-center justify-center border-2 border-white/20 flex-shrink-0">
+                    {user.name ? user.name.charAt(0).toUpperCase() : 'U'}
+                  </div>
                   <div className="text-left hidden lg:block">
                     <div className="text-sm font-semibold text-white leading-tight">{user.name.split(' ')[0]}</div>
                     <div className="text-xs text-[#90AEAD] capitalize">{user.role}</div>

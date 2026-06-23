@@ -82,11 +82,9 @@ export default function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
       {/* User info */}
       <div className="p-4 mx-3 mt-4 rounded-xl bg-white/8 border border-white/10">
         <div className="flex items-center gap-3">
-          <img
-            src={user?.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.name || 'U')}&background=244855&color=FBE9D0`}
-            alt={user?.name}
-            className="w-10 h-10 rounded-full object-cover border-2 border-[#E64833]"
-          />
+          <div className="w-10 h-10 rounded-full bg-[#E64833] text-white font-bold text-sm flex items-center justify-center border-2 border-white/20 flex-shrink-0">
+            {user?.name ? user.name.charAt(0).toUpperCase() : 'U'}
+          </div>
           <div className="flex-1 min-w-0">
             <p className="text-sm font-semibold text-white truncate">{user?.name}</p>
             <div className="flex items-center gap-1.5">

@@ -15,7 +15,7 @@ export default function ContactCTA() {
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-[#FBE9D0] text-sm font-semibold mb-6">
-          🚀 Ready to Transform Your Field Operations?
+          Ready to Transform Your Field Operations?
         </div>
         <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-display text-white mb-6">
           Start Managing Your <span className="text-[#E64833]">Field Force</span> Smarter

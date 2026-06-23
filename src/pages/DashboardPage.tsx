@@ -1,14 +1,28 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, Navigate } from 'react-router-dom';
+import { useNavigate, Navigate, Routes, Route } from 'react-router-dom';
 import { Menu, Bell, Sun, Moon } from 'lucide-react';
 import Sidebar from '@/components/layout/Sidebar';
-import AgentDashboard from '@/components/features/dashboard/AgentDashboard';
-import ManagerDashboard from '@/components/features/dashboard/ManagerDashboard';
-import AdminDashboard from '@/components/features/dashboard/AdminDashboard';
 import { useAuth } from '@/hooks/useAuth';
 import { useTheme } from '@/hooks/useLocalStorage';
 import { MOCK_NOTIFICATIONS } from '@/lib/mockData';
 import { getRelativeTime } from '@/lib/utils';
+
+// Import newly implemented route-based dashboard components
+import DashboardOverview from '@/pages/dashboard/DashboardOverview';
+import TasksPage from '@/pages/dashboard/TasksPage';
+import UsersPage from '@/pages/dashboard/UsersPage';
+import TrackingPage from '@/pages/dashboard/TrackingPage';
+import RegionsPage from '@/pages/dashboard/RegionsPage';
+import ExpensesPage from '@/pages/dashboard/ExpensesPage';
+import AnalyticsPage from '@/pages/dashboard/AnalyticsPage';
+import BlogMgmtPage from '@/pages/dashboard/BlogMgmtPage';
+import SettingsPage from '@/pages/dashboard/SettingsPage';
+import ProfilePage from '@/pages/dashboard/ProfilePage';
+import NotificationsPage from '@/pages/dashboard/NotificationsPage';
+import AttendancePage from '@/pages/dashboard/AttendancePage';
+import ActivityPage from '@/pages/dashboard/ActivityPage';
+import TeamPage from '@/pages/dashboard/TeamPage';
+import ReportsPage from '@/pages/dashboard/ReportsPage';
 
 export default function DashboardPage() {
   const { user, isAuthenticated, isLoading } = useAuth();
@@ -34,9 +48,9 @@ export default function DashboardPage() {
 
   const unreadNotifs = MOCK_NOTIFICATIONS.filter(n => !n.read).length;
 
-  const DashboardComponent = user?.role === 'admin' ? AdminDashboard
-    : user?.role === 'manager' ? ManagerDashboard
-    : AgentDashboard;
+  const isAdmin = user?.role === 'admin';
+  const isManager = user?.role === 'manager';
+  const isAgent = user?.role === 'agent';
 
   return (
     <div className="min-h-screen bg-[#f8fafb] dark:bg-[#0d1f28] flex">
@@ -66,7 +80,7 @@ export default function DashboardPage() {
                 {theme === 'dark' ? <Sun className="w-4.5 h-4.5" /> : <Moon className="w-4.5 h-4.5" />}
               </button>
 
-              {/* Notifications */}
+              {/* Notifications Dropdown */}
               <div className="relative">
                 <button onClick={() => setNotifOpen(o => !o)} className="relative p-2.5 rounded-xl text-[#244855] dark:text-[#90AEAD] hover:bg-[#244855]/10 transition-all min-h-[44px] min-w-[44px] flex items-center justify-center">
                   <Bell className="w-4.5 h-4.5" />
@@ -78,8 +92,11 @@ export default function DashboardPage() {
                 </button>
                 {notifOpen && (
                   <div className="absolute right-0 top-full mt-2 w-80 bg-white dark:bg-[#1a2d38] rounded-2xl shadow-card-hover border border-[#90AEAD]/20 overflow-hidden animate-scale-in z-30">
-                    <div className="p-4 border-b border-[#90AEAD]/20">
-                      <h4 className="font-bold text-[#244855] dark:text-white text-sm">Notifications</h4>
+                    <div className="p-4 border-b border-[#90AEAD]/20 flex items-center justify-between">
+                      <h4 className="font-bold text-[#244855] dark:text-white text-sm">Recent Alerts</h4>
+                      <button onClick={() => { setNotifOpen(false); navigate('/dashboard/notifications'); }} className="text-[10px] text-[#E64833] font-bold hover:underline">
+                        View All
+                      </button>
                     </div>
                     <div className="max-h-72 overflow-y-auto">
                       {MOCK_NOTIFICATIONS.map(n => (
@@ -99,19 +116,51 @@ export default function DashboardPage() {
                 )}
               </div>
 
-              <img
-                src={user?.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.name || 'U')}&background=244855&color=FBE9D0`}
-                alt={user?.name}
-                className="w-9 h-9 rounded-full object-cover border-2 border-[#E64833] cursor-pointer"
+              <div
+                className="w-9 h-9 rounded-full bg-[#E64833] text-white font-bold text-xs flex items-center justify-center border-2 border-white cursor-pointer flex-shrink-0"
                 onClick={() => navigate('/dashboard/profile')}
-              />
+              >
+                {user?.name ? user.name.charAt(0).toUpperCase() : 'U'}
+              </div>
             </div>
           </div>
         </header>
 
-        {/* Dashboard body */}
+        {/* Dashboard body - Route mapping */}
         <main className="flex-1 p-4 sm:p-6">
-          <DashboardComponent />
+          <Routes>
+            {/* Common dashboard overview */}
+            <Route path="/" element={<DashboardOverview />} />
+
+            {/* Profile and Notifications */}
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/notifications" element={<NotificationsPage />} />
+
+            {/* Shared CRUD Modules (Filtered by role internally) */}
+            <Route path="/tasks" element={<TasksPage />} />
+            <Route path="/expenses" element={<ExpensesPage />} />
+
+            {/* Admin only routes */}
+            <Route path="/users" element={isAdmin ? <UsersPage /> : <Navigate to="/dashboard" replace />} />
+            <Route path="/regions" element={isAdmin ? <RegionsPage /> : <Navigate to="/dashboard" replace />} />
+            <Route path="/analytics" element={isAdmin ? <AnalyticsPage /> : <Navigate to="/dashboard" replace />} />
+            <Route path="/blog" element={isAdmin ? <BlogMgmtPage /> : <Navigate to="/dashboard" replace />} />
+            <Route path="/settings" element={isAdmin ? <SettingsPage /> : <Navigate to="/dashboard" replace />} />
+
+            {/* Manager only routes */}
+            <Route path="/team" element={(isManager || isAdmin) ? <TeamPage /> : <Navigate to="/dashboard" replace />} />
+            <Route path="/reports" element={(isManager || isAdmin) ? <ReportsPage /> : <Navigate to="/dashboard" replace />} />
+
+            {/* Agent / Admin / Manager Tracking */}
+            <Route path="/tracking" element={(isManager || isAdmin) ? <TrackingPage /> : <Navigate to="/dashboard" replace />} />
+
+            {/* Agent only routes */}
+            <Route path="/attendance" element={(isAgent || isAdmin || isManager) ? <AttendancePage /> : <Navigate to="/dashboard" replace />} />
+            <Route path="/activity" element={(isAgent || isAdmin || isManager) ? <ActivityPage /> : <Navigate to="/dashboard" replace />} />
+
+            {/* Fallback to Overview */}
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+          </Routes>
         </main>
       </div>
     </div>

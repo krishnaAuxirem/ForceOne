@@ -20,7 +20,7 @@ export default function AboutPage() {
       <section className="py-20 gradient-teal text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-[#FBE9D0] text-sm font-semibold mb-6">
-            🏢 Our Story
+            Our Story
           </div>
           <h1 className="text-5xl md:text-6xl font-bold font-display mb-6">
             Built for the <span className="text-[#E64833]">Field,</span><br />Designed for Scale
@@ -97,7 +97,9 @@ export default function AboutPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {TEAM.map(member => (
               <div key={member.name} className="card-base p-6 text-center group hover:-translate-y-1">
-                <img src={member.avatar} alt={member.name} className="w-20 h-20 rounded-2xl object-cover mx-auto mb-4 group-hover:scale-105 transition-transform" />
+                <div className="w-20 h-20 rounded-2xl bg-[#244855] text-[#FBE9D0] font-bold text-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-105 transition-transform">
+                  {member.name.charAt(0).toUpperCase()}
+                </div>
                 <h4 className="font-bold text-[#244855] dark:text-white font-display">{member.name}</h4>
                 <p className="text-sm text-[#E64833] font-medium mt-1">{member.role}</p>
                 <p className="text-xs text-[#90AEAD] mt-1">{member.desc}</p>

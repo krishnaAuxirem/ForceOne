@@ -98,8 +98,8 @@ export default function LoginPage() {
             </div>
             <div className="grid grid-cols-2 gap-3">
               {[
-                { label: 'Google', icon: 'G', bg: 'bg-red-50 border-red-200 hover:bg-red-100' },
-                { label: 'Facebook', icon: 'f', bg: 'bg-blue-50 border-blue-200 hover:bg-blue-100' },
+                { label: 'Google', icon: 'G', bg: 'bg-[#1f1f1f] border-[#1f1f1f] text-white hover:bg-[#2d2d2d]' },
+                { label: 'Facebook', icon: 'f', bg: 'bg-[#1877F2] border-[#1877F2] text-white hover:bg-[#166fe5]' },
               ].map(s => (
                 <button key={s.label} onClick={() => toast.info(`${s.label} login coming soon!`)}
                   className={`flex items-center justify-center gap-2 py-3 border rounded-xl text-sm font-semibold ${s.bg} transition-all min-h-[44px]`}>
@@ -122,7 +122,7 @@ export default function LoginPage() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#244855]/90 to-[#244855]/60 flex items-center p-16">
           <div>
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 border border-white/20 rounded-full text-white text-sm font-medium mb-6">
-              🚀 Join 50,000+ Field Agents
+              Join 50,000+ Field Agents
             </div>
             <h2 className="text-4xl font-bold text-white font-display mb-4 leading-tight">
               Your Field Operations, Managed Smartly

@@ -58,7 +58,7 @@ export default function BlogPage() {
           {/* Grid */}
           {filtered.length === 0 ? (
             <div className="text-center py-20">
-              <p className="text-4xl mb-4">🔍</p>
+              <Search className="w-12 h-12 text-[#90AEAD] mx-auto mb-4" />
               <h3 className="text-xl font-bold text-[#244855] dark:text-white mb-2">No posts found</h3>
               <p className="text-[#90AEAD]">Try a different search term or category</p>
             </div>

@@ -65,7 +65,7 @@ export default function TestimonialsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14 reveal">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#874F41]/10 border border-[#874F41]/20 text-[#874F41] text-sm font-semibold mb-4">
-            ⭐ Customer Stories
+            Customer Stories
           </div>
           <h2 className="text-4xl md:text-5xl font-bold font-display text-[#244855] dark:text-white mb-4">
             What Our Customers <span className="text-[#E64833]">Are Saying</span>
@@ -92,7 +92,7 @@ export default function TestimonialsSection() {
               </div>
               <p className="text-[#244855]/80 dark:text-[#90AEAD] leading-relaxed mb-4 text-sm">"{t.text}"</p>
               <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#E64833]/10 rounded-full text-xs font-bold text-[#E64833]">
-                📈 {t.metric}
+                {t.metric}
               </div>
             </div>
           ))}
@@ -116,7 +116,7 @@ export default function TestimonialsSection() {
             </div>
             <p className="text-[#244855]/80 dark:text-[#90AEAD] leading-relaxed text-sm mb-3">"{TESTIMONIALS[current].text}"</p>
             <div className="inline-flex items-center gap-1 px-2.5 py-1 bg-[#E64833]/10 rounded-full text-xs font-bold text-[#E64833]">
-              📈 {TESTIMONIALS[current].metric}
+              {TESTIMONIALS[current].metric}
             </div>
           </div>
           <div className="flex items-center justify-center gap-4 mt-6">

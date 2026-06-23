@@ -1,8 +1,17 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { MapPin, Mail, Phone, Twitter, Linkedin, Facebook, Instagram, Youtube, ArrowUp } from 'lucide-react';
 
 export default function Footer() {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+  const location = useLocation();
+
+  const isActive = (path: string) => {
+    if (path.includes('#')) {
+      const [base, hash] = path.split('#');
+      return location.pathname === base && location.hash === `#${hash}`;
+    }
+    return location.pathname === path;
+  };
 
   return (
     <footer className="bg-[#244855] text-white">
@@ -43,19 +52,29 @@ export default function Footer() {
             <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-5">Product</h4>
             <ul className="space-y-3">
               {[
-                { label: 'Features', to: '/#features' },
-                { label: 'Pricing', to: '/#pricing' },
+                { label: 'Features', to: '/features' },
+                { label: 'Pricing', to: '/pricing' },
                 { label: 'Dashboard', to: '/dashboard' },
-                { label: 'Live Tracking', to: '/#tracking' },
-                { label: 'Mobile App', to: '/#mobile' },
-                { label: 'Integrations', to: '/#integrations' },
-              ].map(item => (
-                <li key={item.label}>
-                  <Link to={item.to} className="text-[#90AEAD] hover:text-white text-sm transition-colors duration-200">
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
+                { label: 'Live Tracking', to: '/dashboard/tracking' },
+                { label: 'Mobile App', to: '/mobile-app' },
+                { label: 'Integrations', to: '/integrations' },
+              ].map(item => {
+                const active = isActive(item.to);
+                return (
+                  <li key={item.label}>
+                    <Link 
+                      to={item.to} 
+                      className={`text-sm transition-colors duration-200 ${
+                        active 
+                          ? 'text-[#E64833] font-bold' 
+                          : 'text-[#90AEAD] hover:text-white'
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -70,13 +89,23 @@ export default function Footer() {
                 { label: 'Contact Us', to: '/contact' },
                 { label: 'Privacy Policy', to: '/privacy' },
                 { label: 'Terms & Conditions', to: '/terms' },
-              ].map(item => (
-                <li key={item.label}>
-                  <Link to={item.to} className="text-[#90AEAD] hover:text-white text-sm transition-colors duration-200">
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
+              ].map(item => {
+                const active = isActive(item.to);
+                return (
+                  <li key={item.label}>
+                    <Link 
+                      to={item.to} 
+                      className={`text-sm transition-colors duration-200 ${
+                        active 
+                          ? 'text-[#E64833] font-bold' 
+                          : 'text-[#90AEAD] hover:text-white'
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -115,7 +144,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-[#90AEAD] text-sm">
-            © 2026 Force1. All rights reserved. Built with ❤️ in India.
+            © 2026 Force1. All rights reserved. Built with love in India.
           </p>
           <div className="flex items-center gap-6">
             <Link to="/privacy" className="text-[#90AEAD] hover:text-white text-xs transition-colors">Privacy</Link>

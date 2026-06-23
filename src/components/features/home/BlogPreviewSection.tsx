@@ -32,7 +32,7 @@ export default function BlogPreviewSection() {
         <div className="flex items-end justify-between mb-12 reveal">
           <div>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E64833]/10 border border-[#E64833]/20 text-[#E64833] text-sm font-semibold mb-4">
-              📰 Latest Insights
+              Latest Insights
             </div>
             <h2 className="text-4xl md:text-5xl font-bold font-display text-[#244855] dark:text-white">
               Field Force <span className="text-[#E64833]">Intelligence Blog</span>

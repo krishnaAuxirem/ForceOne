@@ -4,6 +4,7 @@ import { Toaster } from 'sonner';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import HomePage from '@/pages/HomePage';
+import FeaturesPage from '@/pages/FeaturesPage';
 import LoginPage from '@/pages/LoginPage';
 import RegisterPage from '@/pages/RegisterPage';
 import DashboardPage from '@/pages/DashboardPage';
@@ -13,6 +14,9 @@ import BlogPage from '@/pages/BlogPage';
 import BlogDetailPage from '@/pages/BlogDetailPage';
 import PrivacyPage from '@/pages/PrivacyPage';
 import TermsPage from '@/pages/TermsPage';
+import PricingPage from '@/pages/PricingPage';
+import MobileAppPage from '@/pages/MobileAppPage';
+import IntegrationsPage from '@/pages/IntegrationsPage';
 import NotFound from '@/pages/NotFound';
 
 function ScrollToTop() {
@@ -33,6 +37,10 @@ function AppLayout() {
       <div className="flex-1">
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/features" element={<FeaturesPage />} />
+          <Route path="/pricing" element={<PricingPage />} />
+          <Route path="/mobile-app" element={<MobileAppPage />} />
+          <Route path="/integrations" element={<IntegrationsPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/dashboard/*" element={<DashboardPage />} />
